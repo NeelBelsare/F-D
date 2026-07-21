@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApexBank | Risk & Fraud Operations Desk</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Suppresses automatic browser favicon requests to prevent 404 console errors -->
+    <link rel="icon" href="data:,">
 </head>
 <body>
 
@@ -40,7 +43,7 @@
             </div>
             <nav class="sidebar-menu">
                 <a href="#" class="menu-item active">📊 Incidents Queue</a>
-               <a href="#" class="menu-item" onclick="checkAdminAccess()">📜 Audit Logs</a>
+                <a href="#" class="menu-item" onclick="checkAdminAccess()">📜 Audit Logs</a>
                 <a href="#" class="menu-item" onclick="alert('System Settings requires Tier-3 security authorization.')">⚙️ System Settings</a>
             </nav>
             <div class="sidebar-footer">
@@ -133,20 +136,21 @@
                         </tbody>
                     </table>
                 </div>
-           </section>
+            </section>
 
-<!-- SECURE AUDIT LOG PANEL -->
-<div id="audit-log-section" style="display: none; margin-top: 2rem;">
-    <div class="table-section" style="padding: 2rem; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px;">
-        <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">System Operational Security Ledger</h3>
-        <p class="subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">Cryptographic tracking log monitoring active operations workspace overrides.</p>
-        <div id="audit-log-rows" style="font-family: monospace; font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
-            <!-- Live tracking entries will populate here -->
-        </div>
+            <!-- SECURE AUDIT LOG PANEL -->
+            <section id="audit-log-section" style="display: none; margin-top: 2rem;">
+                <div class="table-section" style="padding: 2rem; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px;">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">System Operational Security Ledger</h3>
+                    <p class="subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">Cryptographic tracking log monitoring active operations workspace overrides.</p>
+                    <div id="audit-log-rows" style="font-family: monospace; font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
+                        <!-- Live tracking entries will populate here -->
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-</div>
 
-</main>
     <!-- INCIDENT INVESTIGATION DETAIL PANEL -->
     <div id="action-popup" class="popup-overlay">
         <div class="popup-box">
