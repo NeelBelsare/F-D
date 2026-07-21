@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexBank | Risk & Fraud Operations Desk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SECURE GATEWAY WORKER LOGIN -->
+    <div id="login-screen" class="login-wrapper">
+        <div class="login-box">
+            <div class="bank-logo">🏢 ApexBank <span>Risk Operations Desk</span></div>
+            <h2>Staff Authentication</h2>
+            <p class="login-subtitle">Sign in with your institutional credentials to manage active fraud detection queues.</p>
+            
+            <form id="auth-form" onsubmit="processLogin(event)">
+                <div class="input-field">
+                    <label>Employee Email ID</label>
+                    <input type="email" id="staff-email" placeholder="name@apexbank.com" required>
+                </div>
+                <div class="input-field">
+                    <label>Security Password</label>
+                    <input type="password" id="staff-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Authenticate Session</button>
+            </form>
+            <div id="login-error" class="error-text"></div>
+        </div>
+    </div>
+
+    <!-- MAIN FRAUD MANAGER WORKSPACE -->
+    <div id="dashboard-screen" class="dashboard-container hidden">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                🏢 ApexBank <span class="badge-desk">Risk Desk</span>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active">📊 Incidents Queue</a>
+               <a href="#" class="menu-item" onclick="checkAdminAccess()">📜 Audit Logs</a>
+                <a href="#" class="menu-item" onclick="alert('System Settings requires Tier-3 security authorization.')">⚙️ System Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-meta">
+                    <span class="user-email" id="logged-user">staff@apexbank.com</span>
+                    <span class="user-role">Risk Officer</span>
+                </div>
+                <button class="btn-logout" onclick="logOut()">Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Dynamic Content Workspace -->
+        <main class="main-content">
+            <header class="content-header">
+                <div>
+                    <h1>Active Threat Assessment Pipeline</h1>
+                    <p class="subtitle">Reviewing real-time transactional signals flagged by behavioral AI engines.</p>
+                </div>
+                <button class="btn-simulate" onclick="addNewSimulatedFraud()">⚡ Simulate Incoming Threat Vector</button>
+            </header>
+
+            <!-- CRITICAL THREAT BANNER PANEL -->
+            <section class="alert-banner-zone">
+                <div class="fraud-alert-card" id="hero-alert-card">
+                    <div class="card-header-row">
+                        <span class="alert-badge">⚠️ DEPLOYMENT WARNING: HIGH ANOMALY DETECTED</span>
+                        <span class="time-stamp" id="alert-time">Just Now</span>
+                    </div>
+                    <div class="alert-details">
+                        <div class="quick-facts">
+                            <div class="fact-box">
+                                <strong>Target Account Profile</strong>
+                                <span id="alert-victim">Loading...</span>
+                            </div>
+                            <div class="fact-box">
+                                <strong>Flagged Anomaly Vector</strong>
+                                <span id="alert-method" class="highlight-text">Loading...</span>
+                            </div>
+                            <div class="fact-box">
+                                <strong>AI Confidence Level</strong>
+                                <span id="alert-percentage" class="risk-highlight">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REAL-TIME STATE COUNTER GRID -->
+            <section class="counters-grid">
+                <div class="stat-card border-blue">
+                    <h3>Volume Swept (24h)</h3>
+                    <p class="number">12,450</p>
+                    <small>System sync normal • Live every 5s</small>
+                </div>
+                <div class="stat-card border-orange">
+                    <h3>Pending Queue Cases</h3>
+                    <p class="number" id="total-cases-count">3</p>
+                    <small>Immediate operational priority</small>
+                </div>
+                <div class="stat-card border-red">
+                    <h3>Fraud Incidents Blocked (Today)</h3>
+                    <p class="number" id="fraud-blocked-count">42</p>
+                    <small>Real-time mitigation index</small>
+                </div>
+                <div class="stat-card border-green">
+                    <h3>Mitigated Exposure (Today)</h3>
+                    <p class="number" id="mitigated-exposure-amount">$184,200</p>
+                    <small>Secured institution assets</small>
+                </div>
+            </section>
+
+            <!-- SYSTEM LOG INVENTORY QUEUE -->
+            <section class="table-section">
+                <div class="table-holder">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Incident ID</th>
+                                <th>Customer Account</th>
+                                <th>Device Signature</th>
+                                <th>Geographic Origin</th>
+                                <th>Exposure Value</th>
+                                <th>Confidence</th>
+                                <th>Status</th>
+                                <th>Action Matrix</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-rows">
+                            <!-- Populated Dynamically via JavaScript Engine -->
+                        </tbody>
+                    </table>
+                </div>
+           </section>
+
+<!-- SECURE AUDIT LOG PANEL -->
+<div id="audit-log-section" style="display: none; margin-top: 2rem;">
+    <div class="table-section" style="padding: 2rem; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px;">
+        <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">System Operational Security Ledger</h3>
+        <p class="subtitle" style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">Cryptographic tracking log monitoring active operations workspace overrides.</p>
+        <div id="audit-log-rows" style="font-family: monospace; font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
+            <!-- Live tracking entries will populate here -->
+        </div>
+    </div>
+</div>
+
+</main>
+    <!-- INCIDENT INVESTIGATION DETAIL PANEL -->
+    <div id="action-popup" class="popup-overlay">
+        <div class="popup-box">
+            <span class="close-popup" onclick="closePopup()">&times;</span>
+            <div class="popup-header">
+                <h2 id="pop-case-id">Case Details</h2>
+                <span class="badge-status-review">IN REVIEW</span>
+            </div>
+            <hr class="divider">
+            
+            <div class="popup-body">
+                <h3>Target Account File</h3>
+                <div class="info-grid">
+                    <p><strong>Holder Name:</strong> <span id="pop-name">-</span></p>
+                    <p><strong>Account Routing:</strong> <span id="pop-acc">-</span></p>
+                    <p><strong>Exposure Asset Value:</strong> <span id="pop-amt" class="highlight-orange">-</span></p>
+                </div>
+
+                <h3>Network & Environment Diagnostics</h3>
+                <div class="info-grid">
+                    <p><strong>Geographic Location:</strong> <span id="pop-loc">-</span></p>
+                    <p><strong>Device Context:</strong> <span id="pop-device">-</span></p>
+                </div>
+
+                <h3>AI Risk Engine Assessment Narrative</h3>
+                <div class="explanation-container">
+                    <p id="pop-desc">Loading structural vector details...</p>
+                </div>
+
+                <div class="action-matrix-zone">
+                    <h3>Mitigation Command Matrix</h3>
+                    <p class="notice-text">Executing an action resolves this incident state and logs your employee ID to the permanent security audit trailing matrix.</p>
+                    <div class="popup-buttons">
+                        <button class="btn-danger-action" onclick="handleResolution('Account Frozen & Asset Protected', true)">🔒 Freeze & Cancel Credentials</button>
+                        <button class="btn-secondary-action" onclick="handleResolution('Incident Cleared as Whitelisted Action', false)">✅ Dismiss as Whitelisted</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
