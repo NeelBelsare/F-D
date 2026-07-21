@@ -9,13 +9,13 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'default_dev_secret_key_change_in_prod')
 
 # 2. CORS Configuration for GitHub Pages -> Render Communication
-# Using '*' or your specific github.io domain; credentials enabled for session tracking
+# Explicitly whitelisting the live GitHub Pages domain to prevent preflight blocks
 CORS(app, 
      origins=[
          "http://localhost:3000", 
          "http://localhost:5500",
          "http://127.0.0.1:5500",
-         "https://*.github.io" # Allows any GitHub Pages subdomain
+         "https://neelbelsare.github.io"  # <-- Explicit live domain added here
      ], 
      supports_credentials=True,
      allow_headers=["Content-Type", "Authorization"],
