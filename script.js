@@ -1,8 +1,8 @@
 // ==========================================
 // 1. RENDER API CONFIGURATION
 // ==========================================
-// CHANGE THIS to your deployed Render URL before pushing to GitHub:
-const BACKEND_URL = 'dep-d9fhlujrjlhs73ac269g'; 
+// Properly formatted URL including https:// and .onrender.com
+const BACKEND_URL = 'https://dep-d9fhlujrjlhs73ac269g.onrender.com'; 
 
 let activeCaseId = null;
 let currentUserRole = 'Officer';
